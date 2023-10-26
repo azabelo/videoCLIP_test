@@ -47,7 +47,7 @@ model.eval()
 video_frames = resized_video_tensor.view(1, 10, 30, 3, 224, 224)
 print(f"new video Shape: {video_frames.shape}")
 caps, cmasks = aligner._build_text_seq(
-    tokenizer("colorful noise", add_special_tokens=False)["input_ids"]
+    tokenizer("car driving by", add_special_tokens=False)["input_ids"]
 )
 
 caps, cmasks = caps[None, :], cmasks[None, :]  # bsz=1
