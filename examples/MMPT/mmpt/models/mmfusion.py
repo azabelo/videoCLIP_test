@@ -38,6 +38,7 @@ class MMPTModel(nn.Module):
         from ..tasks import Task
         config = recursive_config(config)
         mmtask = Task.config_task(config)
+        print(config.eval.save_path)
         checkpoint_path = os.path.join(config.eval.save_path, checkpoint)
         mmtask.build_model(checkpoint=checkpoint_path)
         # TODO(huxu): make the video encoder configurable.
