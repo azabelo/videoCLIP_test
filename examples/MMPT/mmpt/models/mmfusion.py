@@ -82,6 +82,9 @@ class MMPTModel(nn.Module):
             dim=1
         )
         output = self.model(caps, cmasks, vfeats, vmasks)
+        #print the shape of the video and text output
+        print(output["pooled_video"].shape)
+        print(output["pooled_text"].shape)
         if return_score:
             output = {"score": torch.bmm(
                 output["pooled_video"][:, None, :],
