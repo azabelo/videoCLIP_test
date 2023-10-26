@@ -30,7 +30,7 @@ for frame in video:
     img = F.to_tensor(img)
     video_frames.append(img)
 resized_video_tensor = torch.stack(video_frames, dim=0)
-resized_video_tensor = resized_video_tensor[:, :300, :, :, :].unsqueeze(0)  # Add batch dimension
+resized_video_tensor = resized_video_tensor[:300, :, :, :].unsqueeze(0)  # Add batch dimension
 
 # Print some information about the video
 print(f"Video Shape: {resized_video_tensor.shape}")
