@@ -48,7 +48,7 @@ video_frames = resized_video_tensor.view(1, 8, 30, 3, 224, 224)
 video_frames = video_frames.permute(0, 1, 2, 4, 5, 3)
 print(f"new video Shape: {video_frames.shape}")
 caps, cmasks = aligner._build_text_seq(
-    tokenizer("car driving by", add_special_tokens=False)["input_ids"]
+    tokenizer("dog playing fetch", add_special_tokens=False)["input_ids"]
 )
 
 caps, cmasks = caps[None, :], cmasks[None, :]  # bsz=1
