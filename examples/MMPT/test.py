@@ -7,7 +7,7 @@ import cv2
 from mmpt.models import MMPTModel
 
 # Define the YouTube video URL
-video_url = "https://www.youtube.com/watch?v=K6xsEng2PhU"
+video_url = "https://www.youtube.com/watch?v=XlZXsvOuuRc"
 
 # Define the file path for saving the downloaded video
 output_file = "test_yt.mp4"
