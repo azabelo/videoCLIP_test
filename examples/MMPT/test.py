@@ -30,7 +30,7 @@ for frame in video:
     img = F.to_tensor(img)
     video_frames.append(img)
 resized_video_tensor = torch.stack(video_frames, dim=0)
-resized_video_tensor = resized_video_tensor[:300, :, :, :].unsqueeze(0)  # Add batch dimension
+resized_video_tensor = resized_video_tensor[:240, :, :, :].unsqueeze(0)  # Add batch dimension
 
 # Print some information about the video
 print(f"Video Shape: {resized_video_tensor.shape}")
@@ -44,7 +44,7 @@ model.eval()
 
 
 # B, T, FPS, H, W, C (VideoCLIP is trained on 30 fps of s3d)
-video_frames = resized_video_tensor.view(1, 10, 30, 3, 224, 224)
+video_frames = resized_video_tensor.view(1, 8, 30, 3, 224, 224)
 print(f"new video Shape: {video_frames.shape}")
 caps, cmasks = aligner._build_text_seq(
     tokenizer("car driving by", add_special_tokens=False)["input_ids"]
