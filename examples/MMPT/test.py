@@ -3,7 +3,6 @@ import torch
 from torchvision.transforms import functional as F
 from torchvision.io import read_video
 from pytube import YouTube
-import cv2
 from mmpt.models import MMPTModel
 
 # Define the YouTube video URL
@@ -44,19 +43,6 @@ for frame in resized_video_tensor:
     # Display the frame in the "Video" window
 
     # cv2.imshow("Video", frame_scaled)
-
-    # Wait for a key press and exit if 'q' is pressed
-    if cv2.waitKey(25) & 0xFF == ord('q'):
-        break
-
-# Release the video window
-cv2.destroyAllWindows()
-
-# Release the video window
-cv2.destroyAllWindows()
-
-# Release the video window
-cv2.destroyAllWindows()
 
 resized_video_tensor = resized_video_tensor[:240, :, :, :].unsqueeze(0)  # Add batch dimension
 
