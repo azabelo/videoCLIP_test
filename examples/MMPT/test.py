@@ -4,10 +4,11 @@ from torchvision.transforms import functional as F
 from torchvision.io import read_video
 from pytube import YouTube
 import cv2
+import numpy
 from mmpt.models import MMPTModel
 
 # Define the YouTube video URL
-video_url = "https://www.youtube.com/watch?v=XlZXsvOuuRc"
+video_url = "https://www.youtube.com/watch?v=6XOCSyJ2kwA"
 
 # Define the file path for saving the downloaded video
 output_file = "test_yt.mp4"
@@ -24,12 +25,40 @@ video_tensor = video.permute(3, 0, 1, 2)  # Rearrange dimensions to (C, T, H, W)
 video_frames = []
 for frame in video:
     # Convert the frame to RGB format
+
     frame_rgb = frame.permute(1, 2, 0).numpy().astype('uint8')
     img = Image.fromarray(frame_rgb, 'RGB')
     img = F.resize(img, (224, 224))
     img = F.to_tensor(img)
     video_frames.append(img)
 resized_video_tensor = torch.stack(video_frames, dim=0)
+print(resized_video_tensor.shape)
+
+# Loop through the frames and display them
+for frame in resized_video_tensor:
+    # Convert the frame tensor to a NumPy array
+    frame_np = frame.permute(1, 2, 0).numpy()
+
+    # Scale the frame values to [0, 255] and ensure the data type is 'uint8'
+    frame_scaled = (frame_np * 255).clip(0, 255).astype("uint8")
+
+    # Display the frame in the "Video" window
+
+    # cv2.imshow("Video", frame_scaled)
+
+    # Wait for a key press and exit if 'q' is pressed
+    if cv2.waitKey(25) & 0xFF == ord('q'):
+        break
+
+# Release the video window
+cv2.destroyAllWindows()
+
+# Release the video window
+cv2.destroyAllWindows()
+
+# Release the video window
+cv2.destroyAllWindows()
+
 resized_video_tensor = resized_video_tensor[:240, :, :, :].unsqueeze(0)  # Add batch dimension
 
 # Print some information about the video
