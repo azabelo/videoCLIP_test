@@ -4,7 +4,6 @@ from torchvision.transforms import functional as F
 from torchvision.io import read_video
 from pytube import YouTube
 import cv2
-import numpy
 from mmpt.models import MMPTModel
 
 # Define the YouTube video URL
