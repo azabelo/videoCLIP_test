@@ -32,19 +32,19 @@ for frame in video:
 resized_video_tensor = torch.stack(video_frames, dim=0)
 print(resized_video_tensor.shape)
 
-# Loop through the frames and display them
-for frame in resized_video_tensor:
-    # Convert the frame tensor to a NumPy array
-    frame_np = frame.permute(1, 2, 0).numpy()
+# # Loop through the frames and display them
+# for frame in resized_video_tensor:
+#     # Convert the frame tensor to a NumPy array
+#     frame_np = frame.permute(1, 2, 0).numpy()
+#
+#     # Scale the frame values to [0, 255] and ensure the data type is 'uint8'
+#     frame_scaled = (frame_np * 255).clip(0, 255).astype("uint8")
+#
+#     # Display the frame in the "Video" window
+#
+#     # cv2.imshow("Video", frame_scaled)
 
-    # Scale the frame values to [0, 255] and ensure the data type is 'uint8'
-    frame_scaled = (frame_np * 255).clip(0, 255).astype("uint8")
-
-    # Display the frame in the "Video" window
-
-    # cv2.imshow("Video", frame_scaled)
-
-resized_video_tensor = resized_video_tensor[:240, :, :, :].unsqueeze(0)  # Add batch dimension
+resized_video_tensor = resized_video_tensor[:128, :, :, :].unsqueeze(0)  # Add batch dimension
 
 # Print some information about the video
 print(f"Video Shape: {resized_video_tensor.shape}")
